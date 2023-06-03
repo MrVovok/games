@@ -1,0 +1,190 @@
+import random
+import time
+print("Введи 'правила', что-бы открыть правила\nНажми на Enter, что-бы начать игру")
+question = input(">>> ")
+if question == "правила":
+    print("|Это игра в очко. Её правила заключаются в том,\n|что тебе предлагается взять рандомную карту от 1 до 36, ты не знаешь, какая карта выпадет.\n|Если ты берешь карту, то в твой банк зачитывается соответствуещее кол-во очков.\n|Главное следи, что-бы все твои очки в банке небыли больше 21, иначе - проигрыш.\n|Если ты введешь 'себе', то тебе ничего не зачитывается и ход идет компьютеру.\n|Против тебя будет играть компьютер, с такими же правилами.\n|Вольт дает 2 очка, королева - 3 очка, король - 4 очка, туз - 11 очков,\n|шестерки - 6 очков, семерки - 7, восьмерки - 8, девятки - 9, десятки - 10.\n|Выигрывает тот, у кого число очков ближе к 21, но не больше\n|Что-бы взять карту, введи 'беру', что-бы передать ход - 'себе'.\n|Удачи!")
+cc = 1
+print("=" * 40, "start")
+you_tt = []
+comp_tt = []
+you_cc = ""
+comp_cc = ""
+gg = " "
+ggg = "; "
+err = "F"
+ended = "F"
+you = input("Ты: ")
+while 1:
+    you_tt = []
+    comp_tt = []
+    while 1:
+        if you == "стоп":
+            qq = input("Ты уверен, что хочешь завершить игру?\nДа(+), Нет(-)\n")
+            if qq == "+":
+                err = "T"
+                break
+            elif qq == "-":
+                continue
+        g = random.randint(1, 4) #масть
+        a = random.randint(1, 36) #карты
+        if a > 1 and a <= 4:
+            if g == 1:
+                g = "6 крести"
+            elif g == 2:
+                g = "6 бубны"
+            elif g == 3:
+                g = "6 червы"
+            elif g == 4:
+                g = "6 пики"
+            a = 6
+        elif a > 4 and a <= 8:
+            if g == 1:
+                g = "7 крести"
+            elif g == 2:
+                g = "7 бубны"
+            elif g == 3:
+                g = "7 червы"
+            elif g == 4:
+                g = "7 пики"
+            a = 7
+        elif a > 8 and a <= 12:
+            if g == 1:
+                g = "8 крести"
+            elif g == 2:
+                g = "8 бубны"
+            elif g == 3:
+                g = "8 червы"
+            elif g == 4:
+                g = "8 пики"
+            a = 8
+        elif a > 12 and a <= 16:
+            if g == 1:
+                g = "9 крести"
+            elif g == 2:
+                g = "9 бубны"
+            elif g == 3:
+                g = "9 червы"
+            elif g == 4:
+                g = "9 пики"
+            a = 9
+        elif a > 16 and a <= 20:
+            if g == 1:
+                g = "10 крести"
+            elif g == 2:
+                g = "10 бубны"
+            elif g == 3:
+                g = "10 червы"
+            elif g == 4:
+                g = "10 пики"
+            a = 10
+        elif a > 20 and a <= 24:  # вольты
+            if g == 1:
+                g = "валет крести"
+            elif g == 2:
+                g = "валет бубны"
+            elif g == 3:
+                g = "валет червы"
+            elif g == 4:
+                g = "валет пики"
+            a = 2
+        elif a > 24 and a <= 28:  # королевы
+            if g == 1:
+                g = "дама крести"
+            elif g == 2:
+                g = "дама бубны"
+            elif g == 3:
+                g = "дама червы"
+            elif g == 4:
+                g = "дама пики"
+            a = 3
+        elif a > 28 and a <= 32:  # короли
+            if g == 1:
+                g = "король крести"
+            elif g == 2:
+                g = "король бубны"
+            elif g == 3:
+                g = "король червы"
+            elif g == 4:
+                g = "король пики"
+            a = 4
+        else:                      #тузы
+            if g == 1:
+                g = "туз крести"
+            elif g == 2:
+                g = "туз бубны"
+            elif g == 3:
+                g = "туз червы"
+            elif g == 4:
+                g = "туз пики"
+            a = 11
+        m = random.randint(6, 10)  # валентность
+        if you == "беру":
+            print("ты получил карту", g, "и", a, "очков")
+            you_tt.append(a)
+            print("твой бюджет равен:", sum(you_tt), "очков")
+        else:
+            print("->!ошибка ввода!<-")
+            you = input("Ты: ")
+            continue
+        if sum(you_tt) > 21:
+            print("ты проиграл!\nпосмотрим что у компьютера")
+
+            break
+        you = input("Ты: ")
+        if you == "себе":
+            break
+    if err == "F":
+        print("-" * 40)
+        while 1:
+            time.sleep(1)
+            g = random.randint(1, 4)  # масть
+            a = random.randint(1, 36)  # карты
+            if a > 1 and a <= 4:
+                a = 6
+            elif a > 4 and a <= 8:
+                a = 7
+            elif a > 8 and a <= 12:
+                a = 8
+            elif a > 12 and a <= 16:
+                a = 9
+            elif a > 16 and a <= 20:
+                a = 10
+            elif a > 20 and a <= 24:  # вольты
+                a = 2
+            elif a > 24 and a <= 28:  # королевы
+                a = 3
+            elif a > 28 and a <= 32:  # короли
+                a = 4
+            else:  # тузы
+                a = 11
+            if 21 - sum(comp_tt) < 5:
+                print("Компьютер: стоп")
+                break
+            else:
+                print("Компьютер: беру")
+                comp_tt.append(a)
+            if sum(comp_tt) > 21:
+                #print("ты победил!")
+                break
+
+
+
+
+
+        print("=" * 40, "stop")
+        if sum(you_tt) >21 and sum(comp_tt) > 21:
+            print("=ОБА ПРОИГРАЛИ=")
+        elif sum(you_tt) > sum(comp_tt) and sum(you_tt) <= 21 or sum(comp_tt) > 21:
+            print("-ТЫ ПОБЕДИЛ!-")
+        elif sum(you_tt) < sum(comp_tt) and sum(comp_tt) <= 21 or sum(you_tt) > 21:
+            print("~ТЫ ПРОИГРАЛ~")
+        elif sum(you_tt) == sum(comp_tt) or sum(you_tt) < sum(comp_tt) and sum(you_tt) > 21 and sum(comp_tt) > 21 or sum(you_tt) > sum(comp_tt) and sum(you_tt) > 21 and sum(comp_tt) > 21:
+            print("=НИЧЬЯ=")
+        print("Игра окончена,\nТвой бюджет составляет:", sum(you_tt), "\nБюджет компьютера:", sum(comp_tt))
+        comment = input("Твой комментарий по игре: ")
+        end = input("Хотите начать новую игру?\nДа(+), Нет(-)\n")
+        if end == "-":
+            break
+        print("=" * 40, "start")
+        you = input("Ты: ")
