@@ -2,8 +2,11 @@ import random
 import time
 
 print("hot keys: 'Help', 'Score', 'Exit'.")
-print("-"*30, ">")
+print("-" * 30, ">")
 score = 0
+mistakes = 0
+helps = 0
+
 while 1:
     a = random.randint(1, 9)
     b = random.randint(1, 9)
@@ -68,7 +71,7 @@ while 1:
     if "." in evaa:
         continue
 
-    evaa = int(evaa)
+    evaa = str(evaa)
 
 
     ans += "="
@@ -79,13 +82,13 @@ while 1:
         if answer == "Help":
             print(">>>", evaa)
             print("-" * 20)
+            helps += 1
             break
         elif answer == "Score":
-            print(score, "examples")
+            print(score, "examples,", mistakes, "mistakes,", helps, "helps")
         elif answer == "Exit":
             exit()
         else:
-            answer = float(answer)
             if answer == evaa:
                 print("Good!")
                 print("-" * 20)
@@ -93,3 +96,4 @@ while 1:
                 break
             else:
                 print("Nope!")
+                mistakes += 1
